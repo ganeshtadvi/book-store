@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getCartItems } from "../../services/bookServices.js";
+import { getCartItems, removeCartItems } from "../../services/bookServices.js";
 import "./CartItems.css";
 
 const CartItems = () => {
-  // Sample cart data for MERN project state
   const [cartItems, setCartItems] = useState([]);
+  const [loggedUser, setLoggedUser] = useState({});
 
   useEffect(() => {
     const fetchCartItems = async () => {
       const user = window.localStorage.getItem("loggedInUser");
+      setLoggedUser(JSON.parse(user));
       const items = await getCartItems(JSON.parse(user));
-      console.log(items.cart);
       setCartItems(items.cart);
     };
     fetchCartItems();
   }, []);
 
-  // Handle quantity change
   const handleQuantityChange = (id, newQty) => {
     setCartItems(
       cartItems.map((item) =>
@@ -25,10 +24,11 @@ const CartItems = () => {
     );
   };
 
-  // Handle item removal
-  const handleRemove = (id) => {};
+  const handleRemove = async (id) => {
+    const removeItem = await removeCartItems(loggedUser, id);
+    setCartItems(cartItems.filter((item) => item._id !== id));
+  };
 
-  // Calculate total price dynamically
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
@@ -44,7 +44,7 @@ const CartItems = () => {
         <div className="cart-content">
           <div className="cart-items-list">
             {cartItems.map((item) => (
-              <div key={item.id} className="cart-item-card">
+              <div key={item._id} className="cart-item-card">
                 <img
                   src={item.logo}
                   alt={item.title}
@@ -74,7 +74,7 @@ const CartItems = () => {
 
                     <button
                       className="remove-btn"
-                      onClick={() => handleRemove(item.id)}
+                      onClick={() => handleRemove(item._id)}
                     >
                       Remove
                     </button>

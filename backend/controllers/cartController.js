@@ -51,7 +51,24 @@ export const getAllCartsDetails = async (req, res) => {
 
   const cartItems = await User.findOne({ email }).populate("cart");
 
-  console.log(cartItems);
-
   res.status(200).json(cartItems);
+};
+
+export const cartDeleteController = async (req, res) => {
+  const authorization = req.get("authorization");
+
+  const bookId = req.body.bookId;
+
+  const token = authorization.replace("Bearer ", "");
+  const decodedToken = jwt.verify(token, process.env.SECRET);
+
+  const { email } = decodedToken;
+
+  const user = await User.findOne({ email });
+
+  user.cart = user.cart.filter((item) => item.toString() !== bookId);
+
+  await user.save();
+
+  res.status(200).json(user.cart);
 };

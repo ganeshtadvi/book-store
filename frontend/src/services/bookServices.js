@@ -59,10 +59,10 @@ export const removeCartItems = async (user, bookId) => {
     headers: { Authorization: `Bearer ${user.token}` },
   };
 
-  const request = await axios.delete(
-    `${baseUrl}/deleteCartItems`,
-    bookId,
-    config,
-  );
+  const request = await axios.delete(`${baseUrl}/deleteCartItems`, {
+    ...config,
+    data: { bookId },
+  });
+
   return request.data;
 };

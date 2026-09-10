@@ -8,8 +8,6 @@ const BookDetails = () => {
   const [book, setBook] = useState({});
   const { id } = useParams();
 
-  // const userlogged = window.localStorage.getItem("loggedInUser");
-
   const handleAddToCart = async (e) => {
     e.preventDefault();
     const user = window.localStorage.getItem("loggedInUser");
@@ -17,7 +15,6 @@ const BookDetails = () => {
       alert("You must be login to add cart");
     }
     const addBook = await addBookToCart(id, JSON.parse(user).token);
-    console.log(addBook);
   };
 
   useEffect(() => {
