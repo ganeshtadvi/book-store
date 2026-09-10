@@ -1,0 +1,73 @@
+.why-choose-us{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 300px;
+    margin: 25px 0;
+    background-color: #fdfcfc;
+  
+}
+
+
+.feature-card{
+
+    width: 25%;
+    height: 150px;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    &:hover{
+        transform: translateY(-2px);
+    }
+}
+
+
+
+.feature-card p{
+    font-size: 18px;
+}
+.feature-icon{
+    display: flex;
+    align-items: center;justify-content: center;
+    height: 60px ;width: 60px;
+}
+
+.feature-card button{
+    height: 40px;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;   margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    &:hover{
+        background-color: black;
+        color: white;
+        transform: scale(1.1);
+    }
+    
+}
+
+
+.discount-card{
+    background-color: #F2FBF5;
+    color: green;
+}
+
+.discount-card button{
+    background-color: rgb(102, 150, 102);
+    color: white;
+}
+
+.shipping-card{
+    background-color: rgb(247, 227, 230);
+    color: rgb(99, 99, 8);
+}
+.shipping-card button{
+    background-color: yellow;
+}
+
+.student-card{
+    background-color: rgb(210, 238, 229);
+}

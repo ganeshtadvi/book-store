@@ -1,0 +1,270 @@
+/* =========================
+   MAIN PARENT
+========================= */
+
+.book-details {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+  
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+  
+  
+  /* =========================
+     IMAGE
+  ========================= */
+  
+  .book-image-container {
+    width: 45%;
+    min-height: 520px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    padding: 30px;
+  
+    background: #f8f9fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+  
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  }
+  
+  .book-image-container img {
+    width: 100%;
+    max-width: 360px;
+    max-height: 500px;
+  
+    object-fit: contain;
+    border-radius: 8px;
+  
+    transition: transform 0.3s ease;
+  }
+  
+  .book-image-container img:hover {
+    transform: scale(1.03);
+  }
+  
+  
+  /* =========================
+     BOOK INFORMATION
+  ========================= */
+  
+  .book-info-container {
+    flex: 1;
+  }
+  
+  .book-info-container h1 {
+    margin: 0 0 10px;
+  
+    color: #172033;
+    font-size: 42px;
+    line-height: 1.15;
+  }
+  
+  .book-author {
+    margin-bottom: 18px;
+    color: #667085;
+    font-size: 17px;
+  }
+  
+  .book-category {
+    display: inline-block;
+  
+    margin-bottom: 18px;
+    padding: 6px 13px;
+  
+    border-radius: 20px;
+  
+    background: #eef3ff;
+    color: #3155a6;
+  
+    font-size: 13px;
+    font-weight: 600;
+  }
+  
+  .book-rating {
+    margin-bottom: 18px;
+  
+    color: #f59e0b;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  
+  .book-price {
+    margin-bottom: 20px;
+  
+    color: #168a45;
+    font-size: 36px;
+    font-weight: 700;
+  }
+  
+  .book-description {
+    margin-bottom: 20px;
+  
+    color: #596273;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  
+  .book-sold {
+    margin-bottom: 30px;
+  
+    color: #737b8c;
+    font-size: 14px;
+  }
+  
+  
+  /* =========================
+     BUTTONS
+  ========================= */
+  
+  .book-actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .book-actions button {
+    min-width: 170px;
+    padding: 14px 22px;
+  
+    border-radius: 8px;
+  
+    font-size: 15px;
+    font-weight: 700;
+  
+    cursor: pointer;
+  
+    transition: 0.2s ease;
+  }
+  
+  .add-cart-btn {
+    border: 2px solid #173b8f;
+    background: white;
+    color: #173b8f;
+  }
+  
+  .buy-now-btn {
+    border: 2px solid #173b8f;
+    background: #173b8f;
+    color: white;
+  }
+  
+  .book-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(23, 59, 143, 0.2);
+  }
+  
+  
+  /* =========================
+     TABLET
+  ========================= */
+  
+  @media (max-width: 900px) {
+  
+    .book-details {
+      width: 92%;
+      gap: 35px;
+    }
+  
+    .book-image-container {
+      width: 45%;
+      min-height: 420px;
+    }
+  
+    .book-info-container h1 {
+      font-size: 34px;
+    }
+  
+  }
+  
+  
+  /* =========================
+     MOBILE
+  ========================= */
+  
+  @media (max-width: 600px) {
+  
+    .book-details {
+      width: 92%;
+      margin: 30px auto;
+  
+      flex-direction: column;
+      gap: 25px;
+    }
+  
+    .book-image-container {
+      width: 100%;
+      min-height: 350px;
+  
+      padding: 20px;
+    }
+  
+    .book-image-container img {
+      max-width: 260px;
+      max-height: 350px;
+    }
+  
+    .book-info-container {
+      width: 100%;
+    }
+  
+    .book-info-container h1 {
+      font-size: 28px;
+    }
+  
+    .book-author {
+      font-size: 15px;
+    }
+  
+    .book-price {
+      font-size: 30px;
+    }
+  
+    .book-description {
+      font-size: 14px;
+    }
+  
+    .book-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+  
+    .book-actions button {
+      min-width: 0;
+      width: 100%;
+      padding: 13px 8px;
+      font-size: 13px;
+    }
+  
+  }
+  
+  
+  /* =========================
+     SMALL MOBILE
+  ========================= */
+  
+  @media (max-width: 380px) {
+  
+    .book-details {
+      width: 94%;
+    }
+  
+    .book-image-container {
+      min-height: 300px;
+    }
+  
+    .book-info-container h1 {
+      font-size: 25px;
+    }
+  
+    .book-actions {
+      grid-template-columns: 1fr;
+    }
+  
+  }

@@ -1,0 +1,95 @@
+.hero-banner-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    min-height: 550px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8fbff, #eef5ff);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.hero-banner-text-container {
+    flex: 1;
+}
+
+.hero-banner-text-container h3 {
+    color: #2d5bd1;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.hero-banner-text-container h2 {
+    font-size: 3.4rem;
+    color: #1f2937;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-banner-text-container p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 35px;
+}
+
+.hero-banner-bottom-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.hero-banner-bottom-buttons button {
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.hero-banner-bottom-buttons button:first-child {
+    background: #2563eb;
+    color: white;
+}
+
+.hero-banner-bottom-buttons button:first-child:hover {
+    background: #1d4ed8;
+}
+
+.hero-banner-bottom-buttons button:last-child {
+    background: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+}
+
+.hero-banner-bottom-buttons button:last-child:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.hero-banner-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-banner-image-container img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    object-fit: contain;
+}
+
+
+a{
+    text-decoration: none;
+}
