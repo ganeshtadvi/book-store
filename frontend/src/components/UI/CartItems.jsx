@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getCartItems, removeCartItems } from "../../services/bookServices.js";
+import {
+  changeCartItems,
+  getCartItems,
+  removeCartItems,
+} from "../../services/bookServices.js";
 import "./CartItems.css";
 
 const CartItems = () => {
@@ -16,17 +20,13 @@ const CartItems = () => {
     fetchCartItems();
   }, []);
 
-  const handleQuantityChange = (id, newQty) => {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: Number(newQty) } : item,
-      ),
-    );
+  const handleQuantityChange = async (id, newQty) => {
+    const changeRequest = await changeCartItems(loggedUser, id, newQty);
   };
 
   const handleRemove = async (id) => {
     const removeItem = await removeCartItems(loggedUser, id);
-    setCartItems(cartItems.filter((item) => item._id !== id));
+    setCartItems(cartItems.filter((item) => item.book._id !== id));
   };
 
   const totalPrice = cartItems.reduce(
@@ -44,16 +44,16 @@ const CartItems = () => {
         <div className="cart-content">
           <div className="cart-items-list">
             {cartItems.map((item) => (
-              <div key={item._id} className="cart-item-card">
+              <div key={item.book._id} className="cart-item-card">
                 <img
-                  src={item.logo}
-                  alt={item.title}
+                  src={item.book.logo}
+                  alt={item.book.title}
                   className="cart-item-image"
                 />
 
                 <div className="cart-item-details">
-                  <h3 className="item-title">{item.title}</h3>
-                  <p className="item-price">${item.price}</p>
+                  <h3 className="item-title">{item.book.title}</h3>
+                  <p className="item-price">${item.book.price}</p>
 
                   <div className="cart-item-actions">
                     <label>
@@ -61,7 +61,7 @@ const CartItems = () => {
                       <select
                         value={item.quantity}
                         onChange={(e) =>
-                          handleQuantityChange(item.id, e.target.value)
+                          handleQuantityChange(item.book._id, e.target.value)
                         }
                       >
                         {[1, 2, 3, 4, 5].map((num) => (
@@ -74,7 +74,7 @@ const CartItems = () => {
 
                     <button
                       className="remove-btn"
-                      onClick={() => handleRemove(item._id)}
+                      onClick={() => handleRemove(item.book._id)}
                     >
                       Remove
                     </button>
@@ -94,7 +94,7 @@ const CartItems = () => {
             </div>
             <div className="summary-row total-row">
               <span>Total Amount:</span>
-              <span>₹{totalPrice}</span>
+              <span>$ {totalPrice}</span>
             </div>
             <button className="checkout-btn">Place Order</button>
           </div>

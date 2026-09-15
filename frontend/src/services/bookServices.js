@@ -54,6 +54,25 @@ export const getCartItems = async (user) => {
   return request.data;
 };
 
+export const changeCartItems = async (user, book, newQty) => {
+  const config = {
+    headers: { Authorization: `Bearer ${user.token} ` },
+  };
+
+  const newQuantityObj = {
+    bookId: book,
+    newQty: newQty,
+  };
+
+  const request = await axios.put(
+    `${baseUrl}/updateCartQuantity`,
+    newQuantityObj,
+    config,
+  );
+
+  return request.data;
+};
+
 export const removeCartItems = async (user, bookId) => {
   const config = {
     headers: { Authorization: `Bearer ${user.token}` },

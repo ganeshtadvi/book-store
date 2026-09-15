@@ -5,6 +5,7 @@ import {
   cartItemController,
   getAllCartsDetails,
   cartDeleteController,
+  updateCartQuantity,
 } from "../controllers/cartController.js";
 
 import {
@@ -24,6 +25,8 @@ bookRouter.put("/addToCart", cartController);
 bookRouter.get("/get-total-cart-items", cartItemController);
 
 bookRouter.get("/allCartItems", getAllCartsDetails);
+
+bookRouter.put("/updateCartQuantity", updateCartQuantity);
 
 bookRouter.delete("/deleteCartItems", cartDeleteController);
 

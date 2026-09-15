@@ -33,9 +33,14 @@ const userSchema = new mongoose.Schema({
   },
   cart: [
     {
-      type: mongoose.Types.ObjectId,
-      unique: true,
-      ref: "Book",
+      book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book",
+      },
+      quantity: {
+        type: Number,
+        default: 1,
+      },
     },
   ],
 });

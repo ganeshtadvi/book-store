@@ -5,7 +5,7 @@ import User from "../models/user.js";
 export const cartController = async (req, res) => {
   const authorization = req.get("authorization");
 
-  if (!authorization || !authorization.startWith("Bearer ")) {
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.status(401).json({
       error: "Authorization token is missing.",
     });
@@ -24,7 +24,14 @@ export const cartController = async (req, res) => {
 
   const updateCart = await User.updateOne(
     { email: decodedToken.email },
-    { $push: { cart: req.body.bookId } },
+    {
+      $push: {
+        cart: {
+          book: req.body.bookId,
+          quantity: 1,
+        },
+      },
+    },
   );
 
   res.status(201).json({
@@ -35,11 +42,12 @@ export const cartController = async (req, res) => {
 export const cartItemController = async (req, res) => {
   const authorization = req.get("authorization");
 
-  if (!authorization || !authorization.startWith("Bearer ")) {
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.status(401).json({
       error: "Authorization token is missing",
     });
   }
+
   const token = authorization.replace("Bearer ", "");
 
   let decodedToken;
@@ -65,7 +73,7 @@ export const cartItemController = async (req, res) => {
 export const getAllCartsDetails = async (req, res) => {
   const authorization = req.get("authorization");
 
-  if (!authorization || !authorization.startWith("Bearer ")) {
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.status(401).json({
       error: "Authorization token is missing",
     });
@@ -81,15 +89,50 @@ export const getAllCartsDetails = async (req, res) => {
 
   const email = decodedToken.email;
 
-  const cartItems = await User.findOne({ email }).populate("cart");
+  const cartItems = await User.findOne({ email }).populate("cart.book");
 
   res.status(200).json(cartItems);
+};
+
+export const updateCartQuantity = async (req, res) => {
+  const authorization = req.get("authorization");
+
+  if (!authorization || !authorization.startsWith("Bearer ")) {
+    return res.status(401).json({
+      error: "Authorization token is missing",
+    });
+  }
+
+  const token = authorization.replace("Bearer ", "");
+
+  let decodedToken;
+  try {
+    decodedToken = jwt.verify(token, process.env.SECRET);
+  } catch (error) {
+    return res.status(401).json({
+      error: "User token is invalid",
+    });
+  }
+
+  const updateCart = await User.updateOne(
+    {
+      email: decodedToken.email,
+      "cart.book": req.body.bookId,
+    },
+    {
+      $set: {
+        "cart.$.quantity": req.body.newQty,
+      },
+    },
+  );
+
+  res.status(201).json(updateCart);
 };
 
 export const cartDeleteController = async (req, res) => {
   const authorization = req.get("authorization");
 
-  if (!authorization || !authorization.startWith("Bearer ")) {
+  if (!authorization || !authorization.startsWith("Bearer ")) {
     return res.status(401).json({
       error: "Authorization Token is missing",
     });
@@ -114,6 +157,45 @@ export const cartDeleteController = async (req, res) => {
   try {
     user.cart = user.cart.filter((item) => item.toString() !== bookId);
     await user.save();
+    res.status(200).json(user.cart);
+  } catch (error) {
+    return res.status(401).json({
+      err: error,
+    });
+  }
+};
+
+export const changeCartQuantity = async () => {
+  const authorization = req.get("authorization");
+
+  if (!authorization || !authorization.startsWith("Bearer ")) {
+    return res.status(401).json({
+      error: "Authorization Token is missing",
+    });
+  }
+
+  const bookId = req.body.bookId;
+
+  const token = authorization.replace("Bearer ", "");
+
+  let decodedToken;
+  try {
+    decodedToken = jwt.verify(token, process.env.SECRET);
+  } catch (error) {
+    return res.status(401).json({
+      error: "User token is invalid",
+    });
+  }
+  const { email } = decodedToken;
+
+  const user = await User.findOne({ email });
+
+  try {
+    const book = await user.cart.filter((item) => item._id === bookId);
+    book.quantity = req.body.quantity;
+
+    await user.save();
+
     res.status(200).json(user.cart);
   } catch (error) {
     return res.status(401).json({

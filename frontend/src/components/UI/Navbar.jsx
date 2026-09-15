@@ -23,8 +23,6 @@ export const Navbar = () => {
 
         const totalCartItem = await getTotalCart(user);
 
-        console.log(totalCartItem.length);
-
         setTotalCartItems(totalCartItem.length);
       }
     };

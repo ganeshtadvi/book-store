@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getBookById } from "../../services/bookServices.js";
 import "./BookDetails.css";
 import { addBookToCart } from "../../services/bookServices.js";
@@ -8,6 +8,8 @@ const BookDetails = () => {
   const [book, setBook] = useState({});
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const handleAddToCart = async (e) => {
     e.preventDefault();
     const user = window.localStorage.getItem("loggedInUser");
@@ -15,6 +17,7 @@ const BookDetails = () => {
       alert("You must be login to add cart");
     }
     const addBook = await addBookToCart(id, JSON.parse(user).token);
+    navigate("/cart");
   };
 
   useEffect(() => {

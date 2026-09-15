@@ -2,7 +2,7 @@ import AppLayout from "./components/Layout/AppLaypout.jsx";
 import { Home } from "./components/Pages/Home.jsx";
 import { AllBooksPage } from "./components/Pages/AllBooksPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import BookDetails from "./components/Pages/BookDetailsPage.jsx";
+import BookDetails from "./components/Pages/BookDetails.jsx";
 import "./App.css";
 import SignUp from "./components/UI/signUp.jsx";
 import LoginForm from "./components/UI/LoginForm.jsx";
