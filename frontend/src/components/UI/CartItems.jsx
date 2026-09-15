@@ -21,7 +21,13 @@ const CartItems = () => {
   }, []);
 
   const handleQuantityChange = async (id, newQty) => {
-    const changeRequest = await changeCartItems(loggedUser, id, newQty);
+    await changeCartItems(loggedUser, id, newQty);
+
+    setCartItems((cartItems) =>
+      cartItems.map((item) =>
+        item.book._id === id ? { ...item, quantity: Number(newQty) } : item,
+      ),
+    );
   };
 
   const handleRemove = async (id) => {
@@ -30,9 +36,11 @@ const CartItems = () => {
   };
 
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.book.price * item.quantity,
     0,
   );
+
+  const formattedTotal = totalPrice.toFixed(2);
 
   return (
     <div className="cart-container">
@@ -94,7 +102,7 @@ const CartItems = () => {
             </div>
             <div className="summary-row total-row">
               <span>Total Amount:</span>
-              <span>$ {totalPrice}</span>
+              <span>$ {formattedTotal}</span>
             </div>
             <button className="checkout-btn">Place Order</button>
           </div>
