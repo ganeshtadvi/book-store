@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl=process.env.BASEURL
+const baseUrl=`${process.env.BASEURL}/api/books`
+
 
 let token = null;
 
