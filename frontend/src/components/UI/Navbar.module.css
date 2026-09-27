@@ -154,7 +154,8 @@
   .rightSection {
     gap: 15px;
   }
-}.cartIconWrapper {
+}
+.cartIconWrapper {
   position: relative;
   display: flex;
 }

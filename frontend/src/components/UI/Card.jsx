@@ -9,14 +9,19 @@ const Card = (book) => {
   return (
     <motion.div
       initial={{
-        y: 20,
+        opacity: 0,
+        y: 40,
+        scale: 0.96,
       }}
-      whileInView={{
+      animate={{
+        opacity: 1,
         y: 0,
+        scale: 1,
       }}
       transition={{
-        delay: 0.5,
-        duration: 0.9,
+        duration: 0.5,
+
+        ease: "easeOut",
       }}
       className="book-card"
       key={book._id}
