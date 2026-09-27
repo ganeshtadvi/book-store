@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl=`${process.env.BASEURL}/api/books`
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/books`;
 
 
 let token = null;
