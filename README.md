@@ -1,6 +1,11 @@
 <h1>📚 BookStore — MERN Stack </h1>
 <p>A full-stack online bookstore built with the MERN stack. Users can browse books, create an account, log in, add books to their cart, and manage cart quantities.</p>
 
+<h1>🚀 Live Demo</h1>
+
+<a href="https://book-store-6toa.onrender.com/" target="blank">👉 View Live BookStore</a>
+
+
 <h3>✨ Features</h3>
 User registration and login
 JWT-based authentication
