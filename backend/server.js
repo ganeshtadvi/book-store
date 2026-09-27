@@ -1,6 +1,11 @@
 import app from "./app.js";
+import dotenv from 'dotenv'
 
-app.listen(8000, (err) => {
+dotenv.config()
+
+const PORT=process.env.PORT || 8000
+
+app.listen(PORT, (err) => {
   if (!err) {
     console.log("server runs successfully");
   } else {
