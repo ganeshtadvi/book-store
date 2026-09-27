@@ -1,16 +1,26 @@
 import { useEffect } from "react";
+import { motion } from "motion/react";
 import "./Card.css";
 import { useNavigate } from "react-router-dom";
 
 const Card = (book) => {
-  useEffect(() => {
-    console.log(window.localStorage.getItem("loggedInUser"));
-  }, []);
-
   const navigate = useNavigate();
 
   return (
-    <div className="book-card" key={book._id}>
+    <motion.div
+      initial={{
+        y: 20,
+      }}
+      whileInView={{
+        y: 0,
+      }}
+      transition={{
+        delay: 0.5,
+        duration: 0.9,
+      }}
+      className="book-card"
+      key={book._id}
+    >
       <img src={book.logo} alt={book.title} />
       <div className="book-info">
         <h2>{book.title}</h2>
@@ -27,7 +37,7 @@ const Card = (book) => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
