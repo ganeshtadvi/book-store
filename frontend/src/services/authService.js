@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8000/auth";
+const baseUrl = `${import.meta.env.VITE_API_URL}/auth`
 
 const signUp = async (newUser) => {
   const response = await axios.post(`${baseUrl}/signup`, newUser);
