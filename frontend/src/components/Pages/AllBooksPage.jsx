@@ -23,7 +23,6 @@ export const AllBooksPage = () => {
   };
 
   const handleCategoryChange = (value) => {
-    console.log(value);
     if (value.toLowerCase() === "all") {
       setBooks(allBooks);
       return;

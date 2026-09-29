@@ -1,16 +1,16 @@
-
-import {Navbar} from '../UI/Navbar.jsx'
-import {Outlet} from 'react-router-dom'
-import {Footer} from '../UI/Footer.jsx'
-
-const AppLayout=()=>{
-return (
+import { Navbar } from "../UI/Navbar.jsx";
+import { Outlet } from "react-router-dom";
+import { Footer } from "../UI/Footer.jsx";
+import ScrollToTop from "./ScrollToTop.jsx";
+const AppLayout = () => {
+  return (
     <>
-    <Navbar/>
-    <Outlet/>
-    <Footer/>
+      <ScrollToTop />
+      <Navbar />
+      <Outlet />
+      <Footer />
     </>
-    )
-}
+  );
+};
 
-export default AppLayout
+export default AppLayout;
