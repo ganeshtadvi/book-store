@@ -28,7 +28,7 @@ React.js
 React Router
 Axios
 JavaScript
-CSS
+CSS(mostly design adapted)
 Backend
 Node.js
 Express.js
