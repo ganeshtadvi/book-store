@@ -81,27 +81,6 @@ export const Footer = () => (
             </li>
           </ul>
         </div>
-
-        <div className="footer-column">
-          <h3>Categories</h3>
-          <ul>
-            <li>
-              <a href="">Fiction</a>
-            </li>
-            <li>
-              <a href="">Non Fiction</a>
-            </li>
-            <li>
-              <a href="">Self Help</a>
-            </li>
-            <li>
-              <a href="">Business</a>
-            </li>
-            <li>
-              <a href="">Science</a>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div className="footer-column">
