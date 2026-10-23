@@ -7,6 +7,7 @@ import "./App.css";
 import SignUp from "./components/UI/signUp.jsx";
 import LoginForm from "./components/UI/LoginForm.jsx";
 import CartItems from "./components/UI/CartItems.jsx";
+import About from "./components/Pages/policy-pages/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/pages/about",
+    element: <About />,
   },
 ]);
 
