@@ -30,19 +30,19 @@ const router = createBrowserRouter([
         path: "/books/:id",
         element: <BookDetails />,
       },
+      {
+        path: "/login",
+        element: <LoginForm />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/pages/about",
+        element: <About />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <LoginForm />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
-  },
-  {
-    path: "/pages/about",
-    element: <About />,
   },
 ]);
 
